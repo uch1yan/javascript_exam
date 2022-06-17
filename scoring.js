@@ -21,6 +21,7 @@ $(document).ready(function () {
 
     let average = sum/subject_points.length;
     $("#average_indicate").text(average);
+    return average;
   };
 
     // 「平均点：」に各教科の平均点を出力する処理を記述する。
@@ -70,21 +71,23 @@ $(document).ready(function () {
     // ヒント：配列の繰り返し処理について調べてみましょう。
      return judge;
   };
+    
   // 最終的なジャッジのロジックを作ります。
-  function judgement() {
+    function judgement() {
     // 変数「achievement」に「get_achievement()の戻り値」を代入します。
-    let achievement = get_achievement();
+      let achievement = get_achievement();
     // 変数「pass_or_failure」に「get_pass_or_failure()の戻り値」を代入します。
-    let pass_or_failure = get_pass_or_failure();
+      let pass_or_failure = get_pass_or_failure();
 
     // 「最終ジャッジ」(id="alert-indicate)ボタンを押したら「あなたの 成績は${achievement}です。${pass_or_failure}です。」が出力される処理です。
     $('#declaration').append(`<label id="alert-indicate" class="alert alert-info">あなたの成績は${achievement}です。${pass_or_failure}です。</label>`);
-
+  };
   // [国語の点数,英語の点数,数学の点数,理科の点数,社会の点数]のいずれかの点数が変更された際に「function score_indicate()」を発火させる処理です。
-  $('#national_language, #english, #mathematics, #science, #society').change(function () {
-    score_indicate();
-  });
- };
+    $('#national_language, #english, #mathematics, #science, #society').change(function () {
+     score_indicate();
+   });
+
+
   // 「ランク」(id="evaluation")ボタンを押したら「get_achievement()」が出力される処理です。
   $('#btn-evaluation').click(function () {
     $("#evaluation").text(get_achievement());
@@ -100,7 +103,7 @@ $(document).ready(function () {
   $('#btn-declaration').click(function () {
     $('#alert-indicate').remove();
     $('#declaration').text(judgement());
-    $('#declaration').append(`<label id="alert-indicate" class="alert alert-info">あなたの成績は${achievement}です。${pass_or_failure}です。</label>`);
+    //$('#declaration').append(`<label id="alert-indicate" class="alert alert-info">あなたの成績は${achievement}です。${pass_or_failure}です。</label>`);
    });
 
 });
